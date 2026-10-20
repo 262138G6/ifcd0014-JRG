@@ -1,0 +1,91 @@
+package com.curso.model;
+
+// Importamos las anotaciones de JPA (Jakarta Persistence), el estándar de Java para
+// guardar objetos en bases de datos. Maven las ha descargado al declarar
+// spring-boot-starter-data-jpa en el pom.xml: no hay que buscarlas ni instalarlas a mano.
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+/**
+ * S11-1 Demo 1: Entidad Tarea escrita a mano
+ *
+ * Objetivo: tener la entidad del proyecto tal como la escribíamos hasta ahora,
+ * con todo el código repetitivo a la vista, para compararla después con la versión de Lombok.
+ *
+ * Lo que hace este ejemplo:
+ *   - Declara la entidad Tarea sobre la tabla tarea de PostgreSQL
+ *   - Escribe a mano el constructor vacío, los getters y los setters
+ *
+ * Concepto clave: en una entidad hay muchas líneas que siempre son iguales.
+ * Lombok las genera al compilar, y Git guarda la diferencia entre las dos versiones.
+ */
+@Entity
+public class Tarea {
+
+    // @Id marca la clave primaria; @GeneratedValue con IDENTITY hace que la genere
+    // la base de datos (columna autoincremental). Es Long y no long porque una tarea
+    // nueva todavía no tiene id y vale null hasta que se guarda.
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // Sin más anotaciones, cada campo se corresponde con la columna del mismo nombre.
+    private String titulo;
+    private String descripcion;
+    private boolean completada;
+
+    // Constructor sin argumentos: Hibernate crea primero un objeto vacío y después
+    // rellena sus campos con los datos de la fila.
+    public Tarea() {
+    }
+
+    // Constructor con los datos de una tarea nueva. No recibe id (lo pone la base de datos)
+    // ni completada (una tarea nueva empieza sin completar: el valor por defecto de boolean es false).
+    public Tarea(String titulo, String descripcion) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+    }
+
+    // Un getter por campo: devuelve su valor. Jackson los usa para escribir el JSON.
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public boolean isCompletada() {
+        return completada;
+    }
+
+    // Un setter por campo: cambia su valor. Jackson los usa para leer el JSON de una petición.
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setCompletada(boolean completada) {
+        this.completada = completada;
+    }
+
+    // toString() devuelve el texto con el que se imprime la tarea;
+    // @Override avisa al compilador de que reescribimos el método heredado de Object.
+    @Override
+    public String toString() {
+        return "Tarea{id=" + id + ", titulo='" + titulo + "', completada=" + completada + "}";
+    }
+}
