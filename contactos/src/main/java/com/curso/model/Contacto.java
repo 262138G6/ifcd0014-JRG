@@ -45,7 +45,7 @@ public class Contacto {
      * @return el texto con los tres datos del contacto
      */
     public String resumen() {
-        // Concatenamos los tres datos con los separadores que queremos entre ellos.
+        // Concatenamos los tres datos con los separadores que queremos entre ellos. Pipeline probado.
         return nombre + " (" + email + ", " + telefono + ")";
     }
 
