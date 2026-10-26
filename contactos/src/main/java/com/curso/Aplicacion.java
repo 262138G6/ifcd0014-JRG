@@ -3,6 +3,7 @@ package com.curso;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+// S14-2 Demo 1: comentario inocuo para comprobar success
 /**
  * S11-1 Práctica 1: Clase principal del proyecto contactos
  *
