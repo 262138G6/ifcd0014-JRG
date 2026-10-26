@@ -46,7 +46,7 @@ public class Contacto {
      */
     public String resumen() {
         // Concatenamos los tres datos con los separadores que queremos entre ellos. Pipeline probado.
-        retun nombre + " (" + email + ", " + telefono + ")";
+        return nombre + " (" + email + ", " + telefono + ")";
     }
 
     /**
