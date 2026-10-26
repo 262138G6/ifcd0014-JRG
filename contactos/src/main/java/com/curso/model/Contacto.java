@@ -46,7 +46,8 @@ public class Contacto {
      */
     public String resumen() {
         // Concatenamos los tres datos con los separadores que queremos entre ellos. Pipeline probado.
-        return nombre + " (" + email + ", " + telefono + ")";
+        // return nombre + " (" + email + ", " + telefono + ")";
+        return nombre + " (" + email + "," + telefono + ")";
     }
 
     /**
@@ -62,7 +63,8 @@ public class Contacto {
     public boolean emailValido() {
         // contains() devuelve true si el texto contiene la cadena indicada.
         // El operador && exige que se cumplan las tres condiciones a la vez.
-        return email.contains("@") && email.contains(".") && !email.contains(" ");
+        // return email.contains("@") && email.contains(".") && !email.contains(" ");
+        return email.contains("@") && email.contains(".");
     }
 
 }
