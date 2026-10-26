@@ -39,4 +39,19 @@ pipeline {
             }
         }
     }
+    // Avisos al finalizar la construccion
+    post {
+        failure {
+            echo "FALLO: la construccion ${env.BUILD_NUMBER} de ${env.JOB_NAME} ha fallado. Revisar la etapa en rojo."
+        }
+
+        success {
+            echo "OK: la construccion ${env.BUILD_NUMBER} de ${env.JOB_NAME} ha terminado bien."
+        }
+
+        fixed {
+            echo "RECUPERADA: ${env.JOB_NAME} vuelve a funcionar desde la construccion ${env.BUILD_NUMBER}."
+        }
+    }
+
 }
