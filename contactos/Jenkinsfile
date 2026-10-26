@@ -1,0 +1,35 @@
+
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK21'
+        maven 'Maven3'
+    }
+
+    stages {
+        stage('Compilar') {
+            steps {
+                dir('contactos') {
+                    bat 'mvn clean compile'
+                }
+            }
+        }
+
+        stage('Pruebas') {
+            steps {
+                dir('contactos') {
+                    bat 'mvn test'
+                }
+            }
+        }
+
+        stage('Empaquetar') {
+            steps {
+                dir('contactos') {
+                    bat 'mvn package -DskipTests'
+                }
+            }
+        }
+    }
+}
